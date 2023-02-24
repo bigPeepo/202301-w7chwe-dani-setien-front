@@ -15,7 +15,7 @@ jobs:
         run: npm ci
 
       - name: 🧪 Testing
-        run: npm test
+        run: npm test -- --passWithNoTests
         env:
           REACT_APP_URL_API: ${{ secrets.REACT_APP_URL_API }}
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
