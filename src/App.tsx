@@ -1,7 +1,5 @@
-import "./App.css";
-
 const App = (): JSX.Element => {
-  return <div className="App"></div>;
+  return <div className="app"></div>;
 };
 
 export default App;
