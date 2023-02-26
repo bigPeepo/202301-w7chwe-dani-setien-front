@@ -30,7 +30,7 @@ const LogInPage = (): JSX.Element => {
       <FeedbackModal
         setIsModalVisible={setIsModalVisible}
         isModalVisible={isModalVisible}
-        modalHeading={"Error"}
+        modalHeading={"Error 🚩"}
         modalBody={"There was an error creating your user."}
       />
     </>
