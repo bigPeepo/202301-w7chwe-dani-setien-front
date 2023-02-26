@@ -2,14 +2,10 @@ import { useState } from "react";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormProps {
-  setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmit: (data: FormData) => void;
 }
 
-const SignUpForm = ({
-  onSubmit,
-  setHasAccount,
-}: SignUpFormProps): JSX.Element => {
+const SignUpForm = ({ onSubmit }: SignUpFormProps): JSX.Element => {
   const [image, setImage] = useState<File>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,11 +18,10 @@ const SignUpForm = ({
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
     if (image) {
       formData.append("image", image);
     }
-
-    setHasAccount(true);
 
     onSubmit(formData);
   };
@@ -51,7 +46,7 @@ const SignUpForm = ({
                 <div className="form-outline mb-4">
                   <input
                     type="email"
-                    id="typeEmailX-2"
+                    name="email"
                     className="form-control form-control-lg"
                     required
                   />
@@ -61,7 +56,7 @@ const SignUpForm = ({
                 <div className="form-outline mb-4">
                   <input
                     type="username"
-                    id="typeUsernameX-2"
+                    name="username"
                     className="form-control form-control-lg"
                     required
                   />
@@ -71,7 +66,7 @@ const SignUpForm = ({
                 <div className="form-outline mb-4">
                   <input
                     type="password"
-                    id="typePasswordX-2"
+                    name="password"
                     className="form-control form-control-lg"
                     required
                   />
@@ -81,7 +76,6 @@ const SignUpForm = ({
                 <div className="form-outline mb-4">
                   <input
                     type="file"
-                    id="typeImageX-2"
                     accept="image/*"
                     className="form-control form-control-lg"
                     onChange={handleImageChange}
