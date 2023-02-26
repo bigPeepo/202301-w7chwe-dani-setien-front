@@ -1,10 +1,15 @@
 import { useState } from "react";
+import styles from "./SignUpForm.module.css";
 
 interface SignUpFormProps {
   setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
+  onSubmit: (data: FormData) => void;
 }
 
-const SignUpForm = ({ setHasAccount }: SignUpFormProps): JSX.Element => {
+const SignUpForm = ({
+  onSubmit,
+  setHasAccount,
+}: SignUpFormProps): JSX.Element => {
   const [image, setImage] = useState<File>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,10 +17,6 @@ const SignUpForm = ({ setHasAccount }: SignUpFormProps): JSX.Element => {
       setImage(event.target.files[0]);
     }
   };
-
-  const [usernameValue, setUsernameValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,15 +26,9 @@ const SignUpForm = ({ setHasAccount }: SignUpFormProps): JSX.Element => {
       formData.append("image", image);
     }
 
-    if (!usernameValue || !emailValue || !passwordValue) {
-      return;
-    }
-
-    setUsernameValue("");
-    setPasswordValue("");
-    setEmailValue("");
-
     setHasAccount(true);
+
+    onSubmit(formData);
   };
 
   return (
@@ -95,7 +90,7 @@ const SignUpForm = ({ setHasAccount }: SignUpFormProps): JSX.Element => {
                 </div>
 
                 <button
-                  className="btn btn-primary btn-lg btn-block"
+                  className={`btn btn-primary btn-lg btn-block ${styles.button}`}
                   type="submit"
                 >
                   Register
