@@ -1,43 +1,25 @@
 import { useState } from "react";
-import { RegisterUserRequest } from "../../types/types";
-import useApi from "../../hooks/useApi";
 
 const SignUpForm = (): JSX.Element => {
-  const { registerUser } = useApi();
-
-  const [usernameValue, setUsernameValue] = useState("");
-  const [imageValue, setImageValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsernameValue(event.target.value);
-  };
+  const [image, setImage] = useState<File>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setImageValue(event.target.value);
+    if (event.target.files) {
+      setImage(event.target.files[0]);
+    }
   };
 
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPasswordValue(event.target.value);
-  };
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmailValue(event.target.value);
-  };
+  const [usernameValue, setUsernameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newUser: RegisterUserRequest = {
-      body: {
-        username: usernameValue,
-        email: emailValue,
-
-        password: passwordValue,
-      },
-      file: { image: imageValue },
-    };
+    const formData = new FormData(event.currentTarget);
+    if (image) {
+      formData.append("image", image);
+    }
 
     if (!usernameValue || !emailValue || !passwordValue) {
       return;
@@ -46,9 +28,6 @@ const SignUpForm = (): JSX.Element => {
     setUsernameValue("");
     setPasswordValue("");
     setEmailValue("");
-    setImageValue("");
-
-    registerUser(newUser);
   };
 
   return (
@@ -63,6 +42,7 @@ const SignUpForm = (): JSX.Element => {
               <form
                 className="card-body p-5 text-center"
                 autoComplete="off"
+                encType="multipart/form"
                 onSubmit={handleSubmit}
               >
                 <h3 className="mb-5">Register</h3>
@@ -72,8 +52,6 @@ const SignUpForm = (): JSX.Element => {
                     type="email"
                     id="typeEmailX-2"
                     className="form-control form-control-lg"
-                    onChange={handleEmailChange}
-                    value={emailValue}
                     required
                   />
                   <label className="form-label">Email</label>
@@ -84,8 +62,6 @@ const SignUpForm = (): JSX.Element => {
                     type="username"
                     id="typeUsernameX-2"
                     className="form-control form-control-lg"
-                    onChange={handleUsernameChange}
-                    value={usernameValue}
                     required
                   />
                   <label className="form-label">Username</label>
@@ -96,8 +72,6 @@ const SignUpForm = (): JSX.Element => {
                     type="password"
                     id="typePasswordX-2"
                     className="form-control form-control-lg"
-                    onChange={handlePasswordChange}
-                    value={passwordValue}
                     required
                   />
                   <label className="form-label">Password</label>
@@ -107,9 +81,9 @@ const SignUpForm = (): JSX.Element => {
                   <input
                     type="file"
                     id="typeImageX-2"
+                    accept="image/*"
                     className="form-control form-control-lg"
                     onChange={handleImageChange}
-                    value={emailValue}
                   />
                   <label className="form-label">Avatar</label>
                 </div>

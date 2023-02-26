@@ -1,9 +1,9 @@
-import SignUpForm from "./components/SignUpForm/signUpForm";
+import LogInPage from "./pages/LoginPage/LoginPage";
 
 const App = (): JSX.Element => {
   return (
     <div className="app">
-      <SignUpForm />
+      <LogInPage />
     </div>
   );
 };
