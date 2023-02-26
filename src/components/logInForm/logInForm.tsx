@@ -1,6 +1,10 @@
 import styles from "./LogInForm.module.css";
 
-const LogInForm = (): JSX.Element => {
+interface LogInFormProps {
+  setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LogInForm = ({ setHasAccount }: LogInFormProps): JSX.Element => {
   return (
     <section className="vh-100" style={{ color: "#508bfc" }}>
       <div className="container py-5 h-100">
@@ -44,6 +48,7 @@ const LogInForm = (): JSX.Element => {
                   <button
                     className={`btn btn-secondary btn-lg btn-block button ${styles.button}`}
                     type="submit"
+                    onClick={() => setHasAccount(false)}
                   >
                     Register
                   </button>

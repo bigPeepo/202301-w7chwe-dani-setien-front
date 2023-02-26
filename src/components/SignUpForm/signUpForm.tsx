@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const SignUpForm = (): JSX.Element => {
+interface SignUpFormProps {
+  setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SignUpForm = ({ setHasAccount }: SignUpFormProps): JSX.Element => {
   const [image, setImage] = useState<File>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +32,8 @@ const SignUpForm = (): JSX.Element => {
     setUsernameValue("");
     setPasswordValue("");
     setEmailValue("");
+
+    setHasAccount(true);
   };
 
   return (
