@@ -1,8 +1,8 @@
 import { useState } from "react";
+import useApi from "../../hooks/useApi";
 import FeedbackModal from "../../components/FeedBackModal/FeedbackModal";
 import LogInForm from "../../components/LogInForm/LogInForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
-import useApi from "../../hooks/useApi";
 
 const LogInPage = (): JSX.Element => {
   const [hasAccount, setHasAccount] = useState(true);
