@@ -1,4 +1,4 @@
-import LogInPage from "./pages/LoginPage/LoginPage";
+import LogInPage from "./pages/LoginPage/LogInUser";
 
 const App = (): JSX.Element => {
   return (
