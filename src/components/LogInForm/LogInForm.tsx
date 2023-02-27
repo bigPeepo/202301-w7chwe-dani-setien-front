@@ -20,34 +20,38 @@ const LogInForm = ({ setHasAccount }: LogInFormProps): JSX.Element => {
                 <div className="form-outline mb-4">
                   <input
                     type="email"
-                    id="typeEmailX-2"
+                    name="email"
                     className="form-control form-control-lg"
+                    id="email"
                     required
                   />
-                  <label className="form-label">Email</label>
+                  <label className="form-label" htmlFor="email">
+                    Email
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="password"
-                    id="typePasswordX-2"
+                    name="password"
+                    id="password"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Password</label>
+                  <label className="form-label" htmlFor="password">
+                    Password
+                  </label>
                 </div>
 
                 <div className={styles.container}>
                   <button
                     className={`btn btn-primary btn-lg btn-block button ${styles.button}`}
-                    type="submit"
                   >
                     Login
                   </button>
 
                   <button
                     className={`btn btn-secondary btn-lg btn-block button ${styles.button}`}
-                    type="submit"
                     onClick={() => setHasAccount(false)}
                   >
                     Register
