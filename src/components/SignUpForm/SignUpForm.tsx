@@ -2,14 +2,10 @@ import { useState } from "react";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormProps {
-  setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmit: (data: FormData) => void;
 }
 
-const SignUpForm = ({
-  onSubmit,
-  setHasAccount,
-}: SignUpFormProps): JSX.Element => {
+const SignUpForm = ({ onSubmit }: SignUpFormProps): JSX.Element => {
   const [image, setImage] = useState<File>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,11 +18,10 @@ const SignUpForm = ({
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
     if (image) {
       formData.append("image", image);
     }
-
-    setHasAccount(true);
 
     onSubmit(formData);
   };
@@ -41,6 +36,7 @@ const SignUpForm = ({
               style={{ borderRadius: "1rem" }}
             >
               <form
+                aria-label="sign up form"
                 className="card-body p-5 text-center"
                 autoComplete="off"
                 encType="multipart/form"
@@ -51,42 +47,53 @@ const SignUpForm = ({
                 <div className="form-outline mb-4">
                   <input
                     type="email"
-                    id="typeEmailX-2"
+                    name="email"
+                    id="email"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Email</label>
+                  <label className="form-label" htmlFor="email">
+                    Email
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="username"
-                    id="typeUsernameX-2"
+                    name="username"
+                    id="username"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Username</label>
+                  <label className="form-label" htmlFor="username">
+                    Username
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="password"
-                    id="typePasswordX-2"
+                    name="password"
+                    id="password"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Password</label>
+                  <label className="form-label" htmlFor="password">
+                    Password
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="file"
-                    id="typeImageX-2"
                     accept="image/*"
+                    id="avatar"
                     className="form-control form-control-lg"
                     onChange={handleImageChange}
                   />
-                  <label className="form-label">Avatar</label>
+                  <label className="form-label" htmlFor="avatar">
+                    Avatar
+                  </label>
                 </div>
 
                 <button

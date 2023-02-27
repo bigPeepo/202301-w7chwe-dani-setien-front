@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useApi from "../../hooks/useApi";
 import FeedbackModal from "../../components/FeedBackModal/FeedbackModal";
-import LogInForm from "../../components/luis/LogInForm";
-import SignUpForm from "../../components/fermin/SignUpForm";
+import LogInForm from "../../components/LogInForm/LogInForm";
+import SignUpForm from "../../components/SignUpForm/SignUpForm";
 
 const LogInPage = (): JSX.Element => {
   const [hasAccount, setHasAccount] = useState(true);
@@ -13,6 +13,7 @@ const LogInPage = (): JSX.Element => {
   const handleSubmit = async (data: FormData) => {
     try {
       await registerUser(data);
+      setHasAccount(true);
     } catch (error: unknown) {
       setIsModalVisible(true);
     }
@@ -23,13 +24,13 @@ const LogInPage = (): JSX.Element => {
       {hasAccount ? (
         <LogInForm setHasAccount={setHasAccount} />
       ) : (
-        <SignUpForm setHasAccount={setHasAccount} onSubmit={handleSubmit} />
+        <SignUpForm onSubmit={handleSubmit} />
       )}
 
       <FeedbackModal
         setIsModalVisible={setIsModalVisible}
         isModalVisible={isModalVisible}
-        modalHeading={"Error"}
+        modalHeading={"Error 🚩"}
         modalBody={"There was an error creating your user."}
       />
     </>
