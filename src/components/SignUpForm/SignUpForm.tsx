@@ -36,6 +36,7 @@ const SignUpForm = ({ onSubmit }: SignUpFormProps): JSX.Element => {
               style={{ borderRadius: "1rem" }}
             >
               <form
+                aria-label="sign up form"
                 className="card-body p-5 text-center"
                 autoComplete="off"
                 encType="multipart/form"
@@ -47,40 +48,52 @@ const SignUpForm = ({ onSubmit }: SignUpFormProps): JSX.Element => {
                   <input
                     type="email"
                     name="email"
+                    id="email"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Email</label>
+                  <label className="form-label" htmlFor="email">
+                    Email
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="username"
                     name="username"
+                    id="username"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Username</label>
+                  <label className="form-label" htmlFor="username">
+                    Username
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="password"
                     name="password"
+                    id="password"
                     className="form-control form-control-lg"
                     required
                   />
-                  <label className="form-label">Password</label>
+                  <label className="form-label" htmlFor="password">
+                    Password
+                  </label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input
                     type="file"
                     accept="image/*"
+                    id="avatar"
                     className="form-control form-control-lg"
                     onChange={handleImageChange}
                   />
-                  <label className="form-label">Avatar</label>
+                  <label className="form-label" htmlFor="avatar">
+                    Avatar
+                  </label>
                 </div>
 
                 <button
